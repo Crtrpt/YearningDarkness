@@ -6,6 +6,11 @@
 基于 https://github.com/cookieY/Yearning AGPL v3协议改造
 ## License
 
+
+### nginx 配置
+
+
+
 - AGPL v3
 
 任何二次开发及二次开源项目请严格遵守相应开源许可
