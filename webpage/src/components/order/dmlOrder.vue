@@ -214,7 +214,7 @@
             message: '数据库名不得为空',
             trigger: 'change'
           }],
-          dev: [{
+          env_name: [{
             required: true,
             message: '执行环境不得为空',
             trigger: 'blur'
@@ -380,6 +380,21 @@
         this.$refs['formItem'].resetFields()
       }
     },
+    beforeRouteEnter (to, from, next) {
+      next(vm => {
+             if (to.query.id !== undefined) {
+            axios.get(`${vm.$config.url}/orderdetail/${to.query.id}`)
+              .then(res => {
+                  console.log(res.data.data)
+                  vm.formItem.env_name = 'stg'
+                  vm.formDynamic = res.data.data
+              })
+              .catch(error => {
+                vm.$config.err_notice(vm, error)
+              })
+          }
+      })
+  },
     mounted () {
       axios.put(`${this.$config.url}/workorder/connection`, {'permissions_type': 'dml'})
         .then(res => {

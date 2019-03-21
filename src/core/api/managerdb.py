@@ -423,7 +423,6 @@ class management_service(baseview.SuperUserpermissions):
                     info = Service.objects.all().order_by('service_name')[start:end]
                 serializers = Servicelist(info, many=True)
 
-
                 envInfo=Env.objects.all()
                 envSerializers=Envlist(envInfo, many=True)
                 return Response(

@@ -513,6 +513,31 @@ export default {
       this.$refs['formItem'].resetFields()
     }
   },
+
+  beforeRouteEnter (to, from, next) {
+      next(vm => {
+             if (to.query.id !== undefined) {
+            axios.get(`${vm.$config.url}/orderdetail/${to.query.id}`)
+              .then(res => {
+                  console.log(res.data.data)
+                  vm.formItem.env_name = 'stg'
+                  vm.formDynamic = res.data.data
+              })
+              .catch(error => {
+                vm.$config.err_notice(vm, error)
+              })
+          }
+      })
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log('update')
+        next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('leave')
+    next()
+  },
+
   mounted () {
     console.log('前置工单:' + this.$route.query.id);
     for (let i of this.$config.highlight.split('|')) {
