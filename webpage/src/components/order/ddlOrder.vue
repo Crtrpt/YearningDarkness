@@ -61,8 +61,8 @@ p {
               <FormItem label="迭代版本:" prop="version">
                 <Input v-model="formItem.version" placeholder="请迭代版本"></Input>
               </FormItem>
-              <FormItem label="服务:" prop="service">
-                  <Input v-model="formItem.service" placeholder="请输入迭代版本"/>
+              <FormItem label="服务:" prop="service_name">
+                  <Input v-model="formItem.service_name" placeholder="请输入迭代版本"/>
               </FormItem>
               <FormItem label="工单提交说明:" prop="text">
                 <Input v-model="formItem.text" placeholder="请输入工单说明"></Input>

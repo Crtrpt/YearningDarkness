@@ -51,7 +51,7 @@
               <template slot-scope="{ row, index }" slot="action">
                 <div>
                   <Button type="text" @click="openOrder(row)" size="small">详细信息</Button>
-                  <Button type="success" @click="switchEnv(row)">迭代版本</Button>
+                  <Button type="success" @click="switchEnv(row)">上线</Button>
                   <Button type="text" @click="orderReject(row)" v-if="row.status === 0" size="small">驳回理由</Button>
                 </div>
               </template>
