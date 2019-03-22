@@ -387,7 +387,7 @@
               .then(res => {
                   console.log(res.data.data)
                   vm.formItem.env_name = 'stg'
-                  vm.formDynamic = res.data.data
+                  vm.formItem.textarea = res.data.data
               })
               .catch(error => {
                 vm.$config.err_notice(vm, error)
