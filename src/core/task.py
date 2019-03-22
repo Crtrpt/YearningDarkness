@@ -118,7 +118,7 @@ class order_push_message(object):
         super().__init__()
         print("执行工单:" + str(id))
         self.id = id
-        self.addr_ip = "http://yearning.devcloud.chupinxiu.com"
+        self.addr_ip = "yearning.devcloud.chupinxiu.com"
         self.order = SqlOrder.objects.filter(id=id).first()
         self.from_user = from_user
         self.to_user = to_user
