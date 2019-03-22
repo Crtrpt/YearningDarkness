@@ -21,7 +21,7 @@ class myorderdetail(baseview.BaseView):
         try:
             order_id = int(args)
         except KeyError as e:
-            CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')
+            CUSTOM_ERROR.error(f'{e.__class__.  __name__}: {e}')
         else:
             try:
                 info = SqlOrder.objects.filter(id=order_id)[0]

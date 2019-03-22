@@ -116,6 +116,7 @@ class order_push_message(object):
 
     def __init__(self, addr_ip, id, from_user, to_user):
         super().__init__()
+        print("执行工单:" + str(id))
         self.id = id
         self.addr_ip = addr_ip
         self.order = SqlOrder.objects.filter(id=id).first()

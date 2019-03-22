@@ -36,6 +36,7 @@ class Account(AbstractUser):
     department = models.CharField(max_length=40)  # 部门
     auth_group = models.CharField(max_length=100, null=True)  # 细粒化权限组
     real_name = models.CharField(max_length=100, null=True, default='请添加真实姓名')  # 真实姓名
+    default_exec_env=models.CharField(max_length=30,default='dev') # 默认执行环境
 
 
 class SqlOrder(models.Model):
