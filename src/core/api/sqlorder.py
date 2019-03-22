@@ -95,7 +95,7 @@ class sqlorder(baseview.BaseView):
                 sql = ';'.join(x)
                 sql = sql.strip(' ').rstrip(';')
                 workId = util.workId()
-                res, err =SqlOrder.objects.get_or_create(
+                res, err = SqlOrder.objects.get_or_create(
                     username=request.user,
                     date=util.date(),
                     work_id=workId,
@@ -113,7 +113,9 @@ class sqlorder(baseview.BaseView):
                     env_name=data['env_name'],
                     service_name=data['service_name'],
                 )
-                if err and data['env_name'] == 'dev':
+                print(res)
+                user_res=Account.objects.filter(username=res.username)[0]
+                if err and data['env_name'] == 'dev' and user_res.default_exec_env == 'dev':
                     arr = order_push_message(addr_ip, res.id,real_name, real_name)
                     threading.Timer(0, arr.run).start()
                 submit_push_messages(
