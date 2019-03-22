@@ -43,7 +43,7 @@ class SqlOrder(models.Model):
     '''
     工单提交表
     '''
-    id = models.IntegerField(auto_created=True,primary_key=True)
+    #id = models.IntegerField(auto_created=True,primary_key=True)
     work_id = models.CharField(max_length=50, blank=True)  # 工单id
     username = models.CharField(max_length=50, blank=True)  # 提交人
     status = models.IntegerField(blank=True)  # 工单状态 0 disagree 1 agree 2 indeterminate 3 ongoing 4 faild
