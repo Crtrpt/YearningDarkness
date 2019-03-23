@@ -263,7 +263,35 @@ export const appRouter = [{
         component: resolve => {
           require(['./components/management/authGroup.vue'], resolve)
         }
+      },
+      {
+        path: 'auth-group',
+        name: 'auth-group',
+        title: '应用',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/authGroup.vue'], resolve)
+        }
+      },
+      {
+        path: 'auth-group',
+        name: 'auth-group',
+        title: '构建',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/authGroup.vue'], resolve)
+        }
+      },
+      {
+        path: 'auth-group',
+        name: 'auth-group',
+        title: '商户',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/authGroup.vue'], resolve)
+        }
       }
+
     ]
   }
 ]

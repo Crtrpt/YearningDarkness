@@ -40,15 +40,16 @@ class order(baseview.BaseView):
                     else:
                         print("查询")
                         picker = []
+                        query_builder= SqlOrder.objects.filter(username=request.user,
+                                                       text__contains=qurey['text'],
+                                                       version__contains=qurey['version'])
                         for i in qurey['picker']:
                             picker.append(i)
-                        info = SqlOrder.objects.filter(username=request.user,
-                                                       text__contains=qurey['text'],
-                                                       version__contains=qurey['version'],
-                                                       date__gte=picker[0],
-                                                       date__lte=picker[1]).defer('sql').order_by(
-                            '-id')[
-                               start:end]
+                        if picker[0] == "":
+                            info = query_builder.defer('sql').order_by('-id')[start:end]
+                        else:
+                            info = query_builder.filter(date__gte=picker[0], date__lte=picker[1]).defer('sql').order_by(
+                                '-id')[start:end]
 
                         page_number = SqlOrder.objects.filter(username=request.user,
                                                               text__contains=qurey['text']).only('id').count()
