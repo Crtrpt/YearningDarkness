@@ -4,6 +4,7 @@ import functools
 import threading
 import ast
 import time
+from settingConf.perm import GET_PERM
 from django.http import HttpResponse
 from libs import send_email, util
 from libs import call_inception
@@ -20,20 +21,9 @@ CUSTOM_ERROR = logging.getLogger('Yearning.core.views')
 
 
 def set_auth_group(user):
-    perm = {
-        'ddl': '0',
-        'ddlcon': [],
-        'dml': '0',
-        'dmlcon': [],
-        'user': '0',
-        'base': '0',
-        'person': [],
-        'query': '0',
-        'querycon': [],
-        'env': '0',
-        'service': '0'
-    }
-
+    # 权限节点
+    perm = GET_PERM()
+    print(perm);
     group = Account.objects.filter(username=user).first()
     group_list = str(group.auth_group).split(',')
     for group_name in group_list:

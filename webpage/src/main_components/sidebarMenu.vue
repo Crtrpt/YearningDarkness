@@ -77,7 +77,8 @@
           'setting': '1',
           'auth-group': '1',
           'management-service': '',
-          'management-env': ''
+          'management-env': '',
+          'management-iframe': ''
         }
       }
     },
@@ -108,8 +109,10 @@
           this.filtermenulist.dmledit = c.dml
           this.filtermenulist['management-user'] = c.user
           this.filtermenulist['management-database'] = c.base
+          // 权限节点
           this.filtermenulist['management-service'] = c.service
           this.filtermenulist['management-env'] = c.env
+          this.filtermenulist['management-iframe'] = c.iframe
         })
     }
   }

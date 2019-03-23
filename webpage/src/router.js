@@ -265,30 +265,30 @@ export const appRouter = [{
         }
       },
       {
-        path: 'auth-group',
-        name: 'auth-group',
+        path: 'iframe?path=app-list',
+        name: 'management-iframe',
         title: '应用',
         icon: 'ios-switch',
         component: resolve => {
-          require(['./components/management/authGroup.vue'], resolve)
+          require(['./components/management/iframe.vue'], resolve)
         }
       },
       {
-        path: 'auth-group',
-        name: 'auth-group',
+        path: 'iframe?path=buildList',
+        name: 'management-iframe',
         title: '构建',
         icon: 'ios-switch',
         component: resolve => {
-          require(['./components/management/authGroup.vue'], resolve)
+          require(['./components/management/iframe.vue'], resolve)
         }
       },
       {
-        path: 'auth-group',
-        name: 'auth-group',
+        path: 'iframe?path=merchant',
+        name: 'management-iframe',
         title: '商户',
         icon: 'ios-switch',
         component: resolve => {
-          require(['./components/management/authGroup.vue'], resolve)
+          require(['./components/management/iframe.vue'], resolve)
         }
       }
 
