@@ -30,7 +30,8 @@
       console.log(to)
         next(vm => {
             if (to.path !== undefined) {
-              var path = to.path.split('/')[2]
+              var path = to.path.split('/')[2].replace(new RegExp('_', 'g'), '-')
+              console.log(path)
               vm.url = `http://ops-web.devcloud.chupinxiu.com/${path}`
               console.log(vm.url)
             }
