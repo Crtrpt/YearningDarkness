@@ -103,6 +103,9 @@
                   <FormItem label="钉钉webhook:">
                     <Input placeholder="此webhook只用于查询工单,权限工单的消息推送。" v-model="message.webhook"></Input>
                   </FormItem>
+                  <!-- <FormItem label="钉钉消息标题:">
+                    <Input placeholder="钉钉推送消息标题" v-model="message.dingding_title" />
+                  </FormItem> -->
                   <FormItem label="邮件SMTP服务地址:">
                     <Input placeholder="STMP服务 地址" v-model="message.smtp_host"></Input>
                   </FormItem>
@@ -252,7 +255,8 @@
           password: '',
           to_user: '',
           mail: '',
-          ding: ''
+          ding: '',
+          dingding_title: ''
         },
         other: {
           sensitive_list: [],
@@ -328,6 +332,7 @@
       },
       dingding_test () {
         axios.put(`${this.$config.url}/setting/2`, {
+          'dingding_title': this.message.dingding_title,
           'ding': this.message.webhook
         })
           .then(res => {

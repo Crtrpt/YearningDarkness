@@ -78,7 +78,14 @@
           'auth-group': '1',
           'management-service': '',
           'management-env': '',
-          'management-iframe': ''
+          'management-iframe': '',
+          'application': '',
+          'build': '',
+          'merchant': '',
+          'nodes_monitor': '',
+          'basic_monitor': '',
+          'order_push_monitor': '',
+          'pinpoint': ''
         }
       }
     },
@@ -104,6 +111,8 @@
       axios.get(`${this.$config.url}/homedata/menu`)
         .then(res => {
           let c = JSON.parse(res.data)
+          // console.log(this.filtermenulist);
+          // console.log(c);
           this.filtermenulist.ddledit = c.ddl
           this.filtermenulist.indexedit = c.ddl
           this.filtermenulist.dmledit = c.dml
@@ -113,6 +122,13 @@
           this.filtermenulist['management-service'] = c.service
           this.filtermenulist['management-env'] = c.env
           this.filtermenulist['management-iframe'] = c.iframe
+          this.filtermenulist['application'] = c.application
+          this.filtermenulist['build'] = c.build
+          this.filtermenulist['merchant'] = c.merchant
+          this.filtermenulist['nodes_monitor'] = c.nodes_monitor
+          this.filtermenulist['basic_monitor'] = c.basic_monitor
+          this.filtermenulist['order_push_monitor'] = c.order_push_monitor
+          this.filtermenulist['pinpoint'] = c.pinpoint
         })
     }
   }

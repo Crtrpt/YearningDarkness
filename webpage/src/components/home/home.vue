@@ -20,9 +20,7 @@
 </style>
 <template>
   <div class="home-main">
-    <Row>
 
-      <Col span="24" class-name="padding-left-5">
         <Row>
           <Col span="4">
             <infor-card id-name="user_created_count" :end-val="count.createUser" iconType="md-person-add"
@@ -36,17 +34,27 @@
             <infor-card id-name="transfer_count" :end-val="count.order" iconType="md-shuffle" color="#f25e43"
                         intro-text="我提交的工单"></infor-card>
           </Col>
-           <Col span="4" class-name="padding-left-5">
+          <Col span="4" class-name="padding-left-5">
             <infor-card id-name="env_count" :end-val="count.env" iconType="logo-buffer" color="#515a6e"
                         intro-text="当前环境"></infor-card>
           </Col>
-             <Col span="4" class-name="padding-left-5">
+          <Col span="4" class-name="padding-left-5">
             <infor-card id-name="service_count" :end-val="count.service" iconType="ios-apps" color="#2d8cf0"
                         intro-text="当前服务"></infor-card>
-          </Col>        
+          </Col>
+          <Col span="4" class-name="padding-left-5">
+            <infor-card id-name="application_count" :end-val="count.application" iconType="ios-appstore" color="#2d8cf0"
+                        intro-text="当前应用"></infor-card>
+          </Col>
         </Row>
-      </Col>
-          
+
+        <Row style="margin-top:10px">
+          <Col span="4" >
+            <infor-card id-name="merchant_count" :end-val="count.merchant" iconType="ios-people" color="#2d8cf0" intro-text="当前商户"></infor-card>
+          </Col> 
+        </Row>
+
+
             <!-- <Col span="8">
         <Row class="margin-top-10">
           <Card>
@@ -58,7 +66,6 @@
           </Card>
         </Row> 
       </Col> -->
-    </Row>
 
 
   </div>
@@ -89,7 +96,9 @@
           order: 0,
           link: 0,
           env: 0,
-          service: 0
+          service: 0,
+          application: 0,
+          merchant: 0
         },
         newToDoItemValue: '',
         time: '',
@@ -111,6 +120,8 @@
       axios.get(`${this.$config.url}/homedata/infocard`)
         .then(res => {
           _this.count = res.data
+          _this.count.application = 0
+          _this.count.merchant = 0
         })
         .catch(error => {
           this.$config.err_notice(this, error)

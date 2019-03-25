@@ -265,8 +265,8 @@ export const appRouter = [{
         }
       },
       {
-        path: 'iframe?path=app-list',
-        name: 'management-iframe',
+        path: 'app-list',
+        name: 'application',
         title: '应用',
         icon: 'ios-switch',
         component: resolve => {
@@ -274,8 +274,8 @@ export const appRouter = [{
         }
       },
       {
-        path: 'iframe?path=buildList',
-        name: 'management-iframe',
+        path: 'buildList',
+        name: 'build',
         title: '构建',
         icon: 'ios-switch',
         component: resolve => {
@@ -283,9 +283,46 @@ export const appRouter = [{
         }
       },
       {
-        path: 'iframe?path=merchant',
-        name: 'management-iframe',
+        path: 'merchant',
+        name: 'merchant',
         title: '商户',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'nodes_monitor',
+        name: 'nodes_monitor',
+        title: '节点监控',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'basic_monitor',
+        name: 'basic_monitor',
+        title: '基础监控',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'order_push_monitor',
+        name: 'order_push_monitor',
+        title: '订单推送监控',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'pinpoint',
+
+        name: 'pinpoint',
+        title: 'pinpoint',
         icon: 'ios-switch',
         component: resolve => {
           require(['./components/management/iframe.vue'], resolve)
