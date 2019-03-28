@@ -107,6 +107,7 @@ p {
                   </FormItem>
                   <FormItem>
                     <Button type="warning" @click="testSql" :loading="loading">检测语句</Button>
+                    <Button type="success" @click="beautify" :loading="loading">美化sql</Button>
                     <Button
                       type="success"
                       style="margin-left: 3%"
@@ -134,6 +135,7 @@ p {
 //
 import axios from 'axios'
 import ICol from 'iview/src/components/grid/col'
+import sqlFormatter from 'sql-formatter'
 
 export default {
   components: {
@@ -484,6 +486,9 @@ export default {
         }
       })
     },
+    beautify () {
+      this.formDynamic = sqlFormatter.format(this.formDynamic)
+    },
     commitOrder () {
       this.$refs['formItem'].validate((valid) => {
         if (valid) {
@@ -521,7 +526,7 @@ export default {
               .then(res => {
                   console.log(res.data.data)
                   vm.formItem.env_name = 'stg'
-                  vm.formDynamic = res.data.data
+                  vm.formDynamic = sqlFormatter.format(res.data.data)
               })
               .catch(error => {
                 vm.$config.err_notice(vm, error)
