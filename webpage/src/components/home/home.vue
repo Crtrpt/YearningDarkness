@@ -20,7 +20,11 @@
 </style>
 <template>
   <div class="home-main">
-
+        <Row>
+            <Col>
+              <Alert>Tips:2019年3月28日:新增sql美化</Alert>
+            </Col>
+        </Row>
         <Row>
           <Col span="4">
             <infor-card id-name="user_created_count" :end-val="count.createUser" iconType="md-person-add"
@@ -53,6 +57,8 @@
             <infor-card id-name="merchant_count" :end-val="count.merchant" iconType="ios-people" color="#2d8cf0" intro-text="当前商户"></infor-card>
           </Col> 
         </Row>
+
+        
 
 
             <!-- <Col span="8">

@@ -68,6 +68,14 @@
           </template>
           <hr style="height:1px;border:none;border-top:1px dashed #dddee1;"/>
           <br>
+          <FormItem label="apollo权限:">
+            <RadioGroup v-model="permission.apollo">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+          <hr style="height:1px;border:none;border-top:1px dashed #dddee1;"/>
+          <br>
           <FormItem label="数据查询权限:">
             <RadioGroup v-model="permission.query">
               <Radio label="1">是</Radio>
@@ -235,7 +243,8 @@
     nodes_monitor: '0',
     basic_monitor: '0',
     order_push_monitor: '0',
-    pinpoint: '0'
+    pinpoint: '0',
+    apollo: '0'
   }
   export default {
     name: 'auth-group',

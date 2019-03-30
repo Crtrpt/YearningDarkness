@@ -16,7 +16,7 @@
     <MenuItem name="main">
       <Icon type="md-cube" size="50" class="MenuIcon"></Icon>
       <br>
-      <span>Yearning SQL审核平台</span>
+      <span>Yearning 审核平台</span>
     </MenuItem>
     <MenuItem name="home_index">
       <Icon type="md-home" :size="iconSize"></Icon>
@@ -42,6 +42,10 @@
         </template>
       </Submenu>
     </template>
+    <MenuItem name="other">
+      <Icon type="ios-link" :size="iconSize"></Icon>
+      <span class="layout-text">其他</span>
+    </MenuItem>
     <Menu-item name="login">
       <Icon type="md-log-out" :size="iconSize"></Icon>
       <span class="layout-text">退出</span>
@@ -85,7 +89,8 @@
           'nodes_monitor': '',
           'basic_monitor': '',
           'order_push_monitor': '',
-          'pinpoint': ''
+          'pinpoint': '',
+          'apollo': ''
         }
       }
     },
@@ -129,6 +134,7 @@
           this.filtermenulist['basic_monitor'] = c.basic_monitor
           this.filtermenulist['order_push_monitor'] = c.order_push_monitor
           this.filtermenulist['pinpoint'] = c.pinpoint
+          this.filtermenulist['apollo'] = c.apollo
         })
     }
   }

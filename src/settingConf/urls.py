@@ -34,6 +34,7 @@ from core.api.applygrained import (
     audit_grained,
     apply_grained
 )
+from core.api.meta import Meta
 from core.api.sqlorder import sqlorder
 from core.api.serachsql import search, query_worklf, Query_order
 from core.api.osc import osc_step
@@ -71,6 +72,7 @@ urlpatterns = [
     url(r'^api/v1/management_env/(.*)', management_env.as_view()),
     url(r'^api/v1/management_service/(.*)', management_service.as_view()),
     url(r'^api-token-auth/', login_auth.as_view()),
+    url(r'^api/v1/meta/', Meta.as_view()),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)

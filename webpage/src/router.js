@@ -62,6 +62,16 @@ export const loginRouter = {
   }
 }
 
+export const otherRouter = {
+  path: 'other',
+  name: 'other',
+  title: '其他',
+  component: resolve => {
+    require(['./components/other/page.vue'], resolve)
+  }
+
+}
+
 export const locking = {
   path: '/locking',
   name: 'locking',
@@ -81,7 +91,8 @@ export const page401 = {
   }
 }
 
-export const appRouter = [{
+export const appRouter = [
+  {
     path: '/',
     icon: 'md-home',
     name: 'main',
@@ -120,6 +131,15 @@ export const appRouter = [{
         },
         component: resolve => {
           require(['./components/order/dmlOrder.vue'], resolve)
+        }
+      },
+      {
+        path: 'apollo',
+        name: 'apollo',
+        title: 'APOLLO',
+        icon: 'ios-cog-outline',
+        component: resolve => {
+          require(['./components/order/apolloOrder.vue'], resolve)
         }
       }
     ]
@@ -335,6 +355,7 @@ export const appRouter = [{
 
 export const MainRoute = [
   loginRouter,
+  otherRouter,
   locking,
   ...appRouter,
   page401

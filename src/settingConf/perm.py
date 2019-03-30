@@ -25,6 +25,8 @@ PERM = {
     'order_push_monitor':'0',
     # 精准定位
     'pinpoint': '0',
+    #配置中心
+    'apollo': '0'
 }
 # 获取权限节点
 def GET_PERM():

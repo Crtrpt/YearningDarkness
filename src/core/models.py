@@ -131,6 +131,7 @@ class globalpermissions(models.Model):
     ldap = JSONField(null=True)
     message = JSONField(null=True)
     other = JSONField(null=True)
+    apollo = JSONField(null=True)
 
 
 class grained(models.Model):
