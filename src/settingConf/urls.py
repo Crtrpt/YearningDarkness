@@ -43,6 +43,7 @@ from core.api.myorderdetail import myorderdetail
 from core.api.general import addressing, exAES
 from core.api.setting import setting_view
 from core.api.authgroup import auth_group
+from core.api.apollo import Apollo
 
 urlpatterns = [
     url(r'^api/v1/exaes', exAES.as_view()),
@@ -73,6 +74,7 @@ urlpatterns = [
     url(r'^api/v1/management_service/(.*)', management_service.as_view()),
     url(r'^api-token-auth/', login_auth.as_view()),
     url(r'^api/v1/meta/', Meta.as_view()),
+    url(r'^api/v1/apollo/(.*)$', Apollo.as_view()),
     url(r'^$', TemplateView.as_view(template_name="index.html")),
 ]
 urlpatterns = format_suffix_patterns(urlpatterns)
