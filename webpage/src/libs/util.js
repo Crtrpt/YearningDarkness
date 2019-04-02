@@ -68,9 +68,9 @@ util.highlight = 'alter|and|as|asc|between|count|create|delete|desc|distinct|dro
 
 console.log(process)
 
-util.url = location.protocol + '//' + document.domain + ':8088/api/v1'
+util.url = location.protocol + '//' + document.domain + '/api/v1'
 
-util.auth = location.protocol + '//' + document.domain + ':8088/api-token-auth/'
+util.auth = location.protocol + '//' + document.domain + '/api-token-auth/'
 
 // util.url = '/api/v1'
 //
