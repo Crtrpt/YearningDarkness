@@ -16,7 +16,7 @@
     <MenuItem name="main">
       <Icon type="md-cube" size="50" class="MenuIcon"></Icon>
       <br>
-      <span>Yearning SQL审核平台</span>
+      <span>Yearning 审核平台</span>
     </MenuItem>
     <MenuItem name="home_index">
       <Icon type="md-home" :size="iconSize"></Icon>
@@ -42,6 +42,10 @@
         </template>
       </Submenu>
     </template>
+    <MenuItem name="other">
+      <Icon type="ios-link" :size="iconSize"></Icon>
+      <span class="layout-text">其他</span>
+    </MenuItem>
     <Menu-item name="login">
       <Icon type="md-log-out" :size="iconSize"></Icon>
       <span class="layout-text">退出</span>
@@ -77,7 +81,16 @@
           'setting': '1',
           'auth-group': '1',
           'management-service': '',
-          'management-env': ''
+          'management-env': '',
+          'management-iframe': '',
+          'application': '',
+          'build': '',
+          'merchant': '',
+          'nodes_monitor': '',
+          'basic_monitor': '',
+          'order_push_monitor': '',
+          'pinpoint': '',
+          'apollo': ''
         }
       }
     },
@@ -103,13 +116,25 @@
       axios.get(`${this.$config.url}/homedata/menu`)
         .then(res => {
           let c = JSON.parse(res.data)
+          // console.log(this.filtermenulist);
+          // console.log(c);
           this.filtermenulist.ddledit = c.ddl
           this.filtermenulist.indexedit = c.ddl
           this.filtermenulist.dmledit = c.dml
           this.filtermenulist['management-user'] = c.user
           this.filtermenulist['management-database'] = c.base
+          // 权限节点
           this.filtermenulist['management-service'] = c.service
           this.filtermenulist['management-env'] = c.env
+          this.filtermenulist['management-iframe'] = c.iframe
+          this.filtermenulist['application'] = c.application
+          this.filtermenulist['build'] = c.build
+          this.filtermenulist['merchant'] = c.merchant
+          this.filtermenulist['nodes_monitor'] = c.nodes_monitor
+          this.filtermenulist['basic_monitor'] = c.basic_monitor
+          this.filtermenulist['order_push_monitor'] = c.order_push_monitor
+          this.filtermenulist['pinpoint'] = c.pinpoint
+          this.filtermenulist['apollo'] = c.apollo
         })
     }
   }

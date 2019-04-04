@@ -19,7 +19,8 @@ class setting_view(baseview.SuperUserpermissions):
                     'inception': dict(setting.inception),
                     'ldap': dict(setting.ldap),
                     'message': dict(setting.message),
-                    'other': dict(setting.other)
+                    'other': dict(setting.other),
+                    'apollo':dict(setting.apollo)
                 }
             )
         else:
@@ -40,7 +41,7 @@ class setting_view(baseview.SuperUserpermissions):
                     return Response('ldap连接失败!')
             elif args == '2':
                 ding = request.data['ding']
-                util.dingding('yearning webhook测试', ding)
+                util.dingding('yearning webhook测试', ding,"工单执行测试")
                 return Response('已发送测试消息，请在钉钉中查看')
 
             else:
@@ -75,6 +76,7 @@ class setting_view(baseview.SuperUserpermissions):
             inception = json.loads(request.data['inception'])
             ldap = json.loads(request.data['ldap'])
             message = json.loads(request.data['message'])
+            apollo = json.loads(request.data['apollo'])
             other = json.loads(request.data['other'])
         except KeyError as e:
             CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')
@@ -82,7 +84,8 @@ class setting_view(baseview.SuperUserpermissions):
         else:
             try:
                 globalpermissions.objects.filter(authorization='global').update(inception=inception, ldap=ldap,
-                                                                                message=message, other=other)
+                                                                                message=message, other=other,
+                                                                                apollo=apollo)
                 return Response('配置信息保存成功!')
             except Exception as e:
                 CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')

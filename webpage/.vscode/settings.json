@@ -1,0 +1,66 @@
+
+{// 是否允许自定义的snippet片段提示
+    "editor.snippetSuggestions"      : "top",
+    "editor.fontSize"                : 14,
+    "editor.fontWeight"              : "400",
+    "editor.formatOnType"            : true,
+    "workbench.iconTheme"            : "material-icon-theme",
+    "workbench.colorTheme"           : "One Dark Pro",
+    "guides.enabled": false,
+    "editor.tabSize": 2,
+    "git.confirmSync": false,
+    "window.zoomLevel": 0,
+    "editor.renderWhitespace": "boundary",
+    "editor.cursorBlinking": "smooth",
+    "editor.minimap.enabled": true,
+    "editor.minimap.renderCharacters": false,
+    "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
+    "editor.codeLens": true,
+    // 配置文件关联，以便启用对应的提示
+    "files.associations": {
+      "*.vue": "vue",
+      "*.wxss": "css"
+    },
+    // 配置emmet是否启用tab展开缩写
+    "emmet.triggerExpansionOnTab": true,
+    // 配置emmet对文件类型的支持
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx",
+        "vue": "html",
+        "vue-html": "html"
+    },
+    // 是否开启eslint检测
+    "eslint.enable": true,
+    // 文件保存时是否根据eslint进行格式化
+    "eslint.autoFixOnSave": true,
+    // eslint配置文件
+    "eslint.options": {
+      "extensions": [
+          ".js",
+          ".vue"
+      ]
+    },
+    // eslint能够识别的文件后缀类型
+    "eslint.validate": [
+        "javascript",{
+            "language": "vue",
+            "autoFix": true
+        },"html",
+        "vue"
+    ],
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true
+    },
+    // 格式化快捷键（默认）：Shift+Alt+F
+    // prettier进行格式化时，开启eslint支持
+    "prettier.eslintIntegration": true,
+    // 是否使用单引号
+    "prettier.singleQuote": true,
+    "prettier.bracketSpacing": true,  
+    "vetur.format.defaultFormatter.js": "vscode-typescript",
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+	// Defines space handling before function argument parentheses. Requires TypeScript >= 2.1.5.
+    "javascript.format.insertSpaceBeforeFunctionParenthesis": true,
+}

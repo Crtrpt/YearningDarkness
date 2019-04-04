@@ -3,6 +3,7 @@
 # Date: 2018/7/10
 import logging
 import json
+from settingConf.perm import GET_PERM
 from django.http import HttpResponse
 from libs import baseview
 from rest_framework.response import Response
@@ -68,19 +69,7 @@ class auth_group(baseview.BaseView):
                 CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')
                 return HttpResponse(e)
             else:
-                perm = {
-                    'ddl': '0',
-                    'ddlcon': [],
-                    'dml': '0',
-                    'dmlcon': [],
-                    'user': '0',
-                    'base': '0',
-                    'person': [],
-                    'query': '0',
-                    'querycon': [],
-                    'env': '0',
-                    'service': '0'
-                }
+                perm = GET_PERM()
                 for group_name in group_list:
                     auth = grained.objects.filter(username=group_name).first()
                     if auth is not None:

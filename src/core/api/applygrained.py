@@ -100,7 +100,7 @@ class apply_grained(baseview.BaseView):
             return Response('权限申请已提交!')
 
 
-def push_message(message=None, type=None, user=None, to_addr=None, work_id=None, status=None):
+def push_message(message=None, type=None, user=None, to_addr=None, work_id=None, status=None, title="Yearning sql审计平台"):
     try:
         tag = globalpermissions.objects.filter(authorization='global').first()
         if tag.message['mail']:
@@ -114,6 +114,7 @@ def push_message(message=None, type=None, user=None, to_addr=None, work_id=None,
             un_init = util.init_conf()
             webhook = ast.literal_eval(un_init['message'])
             util.dingding(content='权限申请通知\n工单编号:%s\n发起人:%s\n状态:%s' % (work_id, user, status),
-                          url=webhook['webhook'])
+                          url=webhook['webhook'],
+                          title=title)
     except Exception as e:
         CUSTOM_ERROR.error(f'{e.__class__.__name__}: {e}')

@@ -45,7 +45,15 @@ router.beforeEach((to, from, next) => {
 router.afterEach(() => {
   iView.LoadingBar.finish()
   window.scrollTo(0, 0)
+  loadingMetaData()
 })
+
+const loadingMetaData = () => {
+  // axios.get(`${config.url}/meta`)
+  // .then(res => {
+  //     console.log(res)
+  // })
+}
 
 new Vue({
   el: '#Subnet',

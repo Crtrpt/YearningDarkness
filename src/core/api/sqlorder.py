@@ -9,8 +9,13 @@ from django.http import HttpResponse
 import threading
 from core.models import (
     DatabaseList,
-    SqlOrder
+    SqlOrder,
+    Env,
+    Service,
+    Account
 )
+
+
 from core.task import order_push_message, rejected_push_messages
 
 CUSTOM_ERROR = logging.getLogger('Yearning.core.views')
@@ -94,7 +99,9 @@ class sqlorder(baseview.BaseView):
                 sql = ';'.join(x)
                 sql = sql.strip(' ').rstrip(';')
                 workId = util.workId()
-                res, err =SqlOrder.objects.get_or_create(
+                env_name=Env.objects.filter(id=data['env_id'])[0].env_name
+                service_name=Service.objects.filter(id=data['service_id'])[0].service_name
+                res, err = SqlOrder.objects.get_or_create(
                     username=request.user,
                     date=util.date(),
                     work_id=workId,
@@ -109,10 +116,14 @@ class sqlorder(baseview.BaseView):
                     delay=data['delay'],
                     real_name=real_name,
                     version=data['version'],
-                    env_name=data['env_name'],
-                    service_name=data['service_name'],
+                    env_name=env_name,
+                    env_id=data['env_id'],
+                    service_name=service_name,
+                    service_id=data['service_id'],
                 )
-                if err and data['env_name'] == 'dev':
+
+                user_res=Account.objects.filter(username=request.user)[0]
+                if err and data['env_id'] == 1 and res.bundle_id == 18:
                     arr = order_push_message(addr_ip, res.id,real_name, real_name)
                     threading.Timer(0, arr.run).start()
                 submit_push_messages(

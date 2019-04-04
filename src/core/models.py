@@ -36,12 +36,14 @@ class Account(AbstractUser):
     department = models.CharField(max_length=40)  # 部门
     auth_group = models.CharField(max_length=100, null=True)  # 细粒化权限组
     real_name = models.CharField(max_length=100, null=True, default='请添加真实姓名')  # 真实姓名
+    default_exec_env=models.CharField(max_length=30,default='dev') # 默认执行环境
 
 
 class SqlOrder(models.Model):
     '''
     工单提交表
     '''
+    #id = models.IntegerField(auto_created=True,primary_key=True)
     work_id = models.CharField(max_length=50, blank=True)  # 工单id
     username = models.CharField(max_length=50, blank=True)  # 提交人
     status = models.IntegerField(blank=True)  # 工单状态 0 disagree 1 agree 2 indeterminate 3 ongoing 4 faild
@@ -129,6 +131,7 @@ class globalpermissions(models.Model):
     ldap = JSONField(null=True)
     message = JSONField(null=True)
     other = JSONField(null=True)
+    apollo = JSONField(null=True)
 
 
 class grained(models.Model):

@@ -62,6 +62,16 @@ export const loginRouter = {
   }
 }
 
+export const otherRouter = {
+  path: 'other',
+  name: 'other',
+  title: '其他',
+  component: resolve => {
+    require(['./components/other/page.vue'], resolve)
+  }
+
+}
+
 export const locking = {
   path: '/locking',
   name: 'locking',
@@ -81,7 +91,8 @@ export const page401 = {
   }
 }
 
-export const appRouter = [{
+export const appRouter = [
+  {
     path: '/',
     icon: 'md-home',
     name: 'main',
@@ -120,6 +131,15 @@ export const appRouter = [{
         },
         component: resolve => {
           require(['./components/order/dmlOrder.vue'], resolve)
+        }
+      },
+      {
+        path: 'apollo',
+        name: 'apollo',
+        title: 'APOLLO',
+        icon: 'ios-cog-outline',
+        component: resolve => {
+          require(['./components/order/apolloOrder.vue'], resolve)
         }
       }
     ]
@@ -263,13 +283,79 @@ export const appRouter = [{
         component: resolve => {
           require(['./components/management/authGroup.vue'], resolve)
         }
+      },
+      {
+        path: 'app-list',
+        name: 'application',
+        title: '应用',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'buildList',
+        name: 'build',
+        title: '构建',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'merchant',
+        name: 'merchant',
+        title: '商户',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'nodes_monitor',
+        name: 'nodes_monitor',
+        title: '节点监控',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'basic_monitor',
+        name: 'basic_monitor',
+        title: '基础监控',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'order_push_monitor',
+        name: 'order_push_monitor',
+        title: '订单推送监控',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
+      },
+      {
+        path: 'pinpoint',
+
+        name: 'pinpoint',
+        title: 'pinpoint',
+        icon: 'ios-switch',
+        component: resolve => {
+          require(['./components/management/iframe.vue'], resolve)
+        }
       }
+
     ]
   }
 ]
 
 export const MainRoute = [
   loginRouter,
+  otherRouter,
   locking,
   ...appRouter,
   page401

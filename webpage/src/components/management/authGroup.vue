@@ -68,6 +68,14 @@
           </template>
           <hr style="height:1px;border:none;border-top:1px dashed #dddee1;"/>
           <br>
+          <FormItem label="apollo权限:">
+            <RadioGroup v-model="permission.apollo">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+          <hr style="height:1px;border:none;border-top:1px dashed #dddee1;"/>
+          <br>
           <FormItem label="数据查询权限:">
             <RadioGroup v-model="permission.query">
               <Radio label="1">是</Radio>
@@ -136,6 +144,55 @@
               <Radio label="0">否</Radio>
             </RadioGroup>
           </FormItem>
+          <FormItem label="原始ops权限:">
+            <RadioGroup v-model="permission.iframe">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+           <FormItem label="应用:">
+            <RadioGroup v-model="permission.application">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+           <FormItem label="构建:">
+            <RadioGroup v-model="permission.build">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+           <FormItem label="商户:">
+            <RadioGroup v-model="permission.merchant">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+           <FormItem label="节点监控:">
+            <RadioGroup v-model="permission.nodes_monitor">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+          <FormItem label="基础监控:">
+            <RadioGroup v-model="permission.basic_monitor">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+          <FormItem label="订单推送监控:">
+            <RadioGroup v-model="permission.order_push_monitor">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+          <FormItem label="pinpoint:">
+            <RadioGroup v-model="permission.pinpoint">
+              <Radio label="1">是</Radio>
+              <Radio label="0">否</Radio>
+            </RadioGroup>
+          </FormItem>
+      
       
         </template>
       </Form>
@@ -178,7 +235,16 @@
     base: '0',
     person: [],
     service: '0',
-    env: '0'
+    env: '0',
+    iframe: '0',
+    application: '0',
+    build: '0',
+    merchant: '0',
+    nodes_monitor: '0',
+    basic_monitor: '0',
+    order_push_monitor: '0',
+    pinpoint: '0',
+    apollo: '0'
   }
   export default {
     name: 'auth-group',

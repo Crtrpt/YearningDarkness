@@ -102,6 +102,18 @@ class Recordinfo(serializers.HyperlinkedModelSerializer):
         fields = ('workid', 'username', 'text', 'data', 'basename', 'assigned')
 
 
+class OrderDetail(serializers.HyperlinkedModelSerializer):
+    '''
+
+    order原始sql 返回
+
+    '''
+
+    class Meta:
+        model = SqlOrder
+        fields = ('id','workid', 'username', 'text', 'data', 'basename', 'assigned', "env_id", "env_name", "service_id",
+                  "service_name")
+
 class Query_review(serializers.HyperlinkedModelSerializer):
     '''
 

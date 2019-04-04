@@ -1,6 +1,6 @@
 <style lang="less">
-@import "../../styles/common.less";
-@import "components/table.less";
+@import '../../styles/common.less';
+@import 'components/table.less';
 
 p {
   word-wrap: break-word;
@@ -55,15 +55,22 @@ p {
                 <Button type="primary" @click="acquireStruct()">获取表结构信息</Button>
                 <Button type="error" @click="canel()">重置</Button>
               </Form-item>
-              <FormItem label="环境:" prop="env_name">
-                <Input v-model="formItem.env_name" placeholder="执行环境"></Input>
+
+              <FormItem label="环境:" prop="env_id">
+                <envWidget v-model="formItem.env_id"/>
               </FormItem>
+
+              <FormItem label="服务:" prop="service_id">
+                <serviceWidget v-model="formItem.service_id"/>
+              </FormItem>
+
+              <!-- <FormItem label="环境:" prop="env_name">
+                <Input v-model="formItem.env_name" placeholder="执行环境"></Input>
+              </FormItem>-->
               <FormItem label="迭代版本:" prop="version">
                 <Input v-model="formItem.version" placeholder="请迭代版本"></Input>
               </FormItem>
-              <FormItem label="服务:" prop="service">
-                  <Input v-model="formItem.service" placeholder="请输入迭代版本"/>
-              </FormItem>
+
               <FormItem label="工单提交说明:" prop="text">
                 <Input v-model="formItem.text" placeholder="请输入工单说明"></Input>
               </FormItem>
@@ -73,8 +80,15 @@ p {
                 </Select>
               </FormItem>
               <FormItem label="定时执行">
-                <DatePicker format="yyyy-MM-dd HH:mm" type="datetime" placeholder="选择时间点" :options="invalidDate" :editable="false"
-                            v-model="formItem.delay" @on-change="formItem.delay=$event"></DatePicker>
+                <DatePicker
+                  format="yyyy-MM-dd HH:mm"
+                  type="datetime"
+                  placeholder="选择时间点"
+                  :options="invalidDate"
+                  :editable="false"
+                  v-model="formItem.delay"
+                  @on-change="formItem.delay=$event"
+                ></DatePicker>
               </FormItem>
               <FormItem label="是否备份" prop="backup">
                 <RadioGroup v-model="formItem.backup">
@@ -107,6 +121,7 @@ p {
                   </FormItem>
                   <FormItem>
                     <Button type="warning" @click="testSql" :loading="loading">检测语句</Button>
+                    <Button type="success" @click="beautify" :loading="loading">美化sql</Button>
                     <Button
                       type="success"
                       style="margin-left: 3%"
@@ -134,10 +149,15 @@ p {
 //
 import axios from 'axios'
 import ICol from 'iview/src/components/grid/col'
+import sqlFormatter from 'sql-formatter'
+import envWidget from '../widget/envWidget'
+import serviceWidget from '../widget/serviceWidget'
 
 export default {
   components: {
     ICol,
+    envWidget,
+    serviceWidget,
     editor: require('../../libs/editor')
   },
   data () {
@@ -179,20 +199,19 @@ export default {
             trigger: 'change'
           }
         ],
-        env_name: [{
-            required: true,
-            message: '执行环境不得为空',
-            trigger: 'blur'
+        env_id: [{
+          required: true,
+          message: '执行环境不得为空'
         }],
-        service_name: [{
-            required: true,
-            message: '服务不得为空',
-            trigger: 'blur'
+        service_id: [{
+          required: true,
+          message: '服务不得为空'
+
         }],
         version: [{
-            required: true,
-            message: '迭代版本不得为空',
-            trigger: 'blur'
+          required: true,
+          message: '迭代版本不得为空',
+          trigger: 'blur'
         }],
         text: [
           {
@@ -214,7 +233,9 @@ export default {
         text: '',
         version: '',
         env_name: 'dev',
+        env_id: 1,
         service_name: '',
+        service_id: 1,
         computer_room: '',
         connection_name: '',
         basename: '',
@@ -484,6 +505,9 @@ export default {
         }
       })
     },
+    beautify () {
+      this.formDynamic = sqlFormatter.format(this.formDynamic)
+    },
     commitOrder () {
       this.$refs['formItem'].validate((valid) => {
         if (valid) {
@@ -513,6 +537,32 @@ export default {
       this.$refs['formItem'].resetFields()
     }
   },
+
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      if (to.query.id !== undefined) {
+        axios.get(`${vm.$config.url}/orderdetail/${to.query.id}`)
+          .then(res => {
+            console.log(res.data.data)
+            vm.formItem.env_name = 'stg'
+            vm.formItem.env_id = 3
+            vm.formDynamic = sqlFormatter.format(res.data.data)
+          })
+          .catch(error => {
+            vm.$config.err_notice(vm, error)
+          })
+      }
+    })
+  },
+  beforeRouteUpdate (to, from, next) {
+    console.log('update')
+    next()
+  },
+  beforeRouteLeave (to, from, next) {
+    console.log('leave')
+    next()
+  },
+
   mounted () {
     console.log('前置工单:' + this.$route.query.id);
     for (let i of this.$config.highlight.split('|')) {
